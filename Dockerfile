@@ -41,9 +41,12 @@ RUN set -ex; \
 #	tar -xzf wordpress.tar.gz -C /usr/src/; \
 #	rm wordpress.tar.gz; \
 	chown -R www-data:www-data /usr/src/wordpress
+RUN mkdir /var/www/html/contact
+RUN mkdir /var/www/html/login
 
-COPY contact /var/www/html/
-COPY login /var/www/html/
+COPY contact /var/www/html/contact
+COPY login /var/www/html/login
+
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT ["docker-entrypoint.sh"]
